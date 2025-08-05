@@ -22,7 +22,7 @@ jobs:
 
       - name: Run API Tests using TestNG
         working-directory: ./Test
-        run: mvn clean test -DsuiteXmlFile=testng.xml
+        run:  mvn -f pom.xml test -Dsurefire.suiteXmlFiles=testng.xml
 
       - name: List test output files (for debugging)
         working-directory: ./Test
