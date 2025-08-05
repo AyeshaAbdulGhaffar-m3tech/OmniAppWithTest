@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [API Test Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="TestAPIs Sequential Execution(failed)">
+    <classes>
+      <class name="TestAPIs.RoleAPITest">
+        <methods>
+          <include name="TC01_CreateRole" invocation-numbers="0"/>
+          <include name="TC02_GetRole"/>
+          <include name="TC04_DeleteRoleByID"/>
+          <include name="setupExtentReport"/>
+          <include name="TC03_GetROleByID"/>
+          <include name="tearDownReport"/>
+        </methods>
+      </class> <!-- TestAPIs.RoleAPITest -->
+      <class name="TestAPIs.UsersAPITest">
+        <methods>
+          <include name="TC01_CreateUser" invocation-numbers="0 3 5"/>
+          <include name="TC04_DeleteUserByID"/>
+          <include name="TC03_GetUserByID"/>
+          <include name="setupExtentReport"/>
+          <include name="tearDownReport"/>
+          <include name="TC02_GetUser"/>
+        </methods>
+      </class> <!-- TestAPIs.UsersAPITest -->
+      <class name="TestAPIs.ModuleAPITest">
+        <methods>
+          <include name="TC01_CreateModule" invocation-numbers="0"/>
+          <include name="TC04_DeleteModuleByID"/>
+          <include name="TC03_GetModuleByID"/>
+          <include name="setupExtentReport"/>
+          <include name="tearDownReport"/>
+        </methods>
+      </class> <!-- TestAPIs.ModuleAPITest -->
+      <class name="TestAPIs.ActionsAPITest">
+        <methods>
+          <include name="setupExtentReport"/>
+          <include name="TC05_DeleteActionByID"/>
+          <include name="tearDownReport"/>
+        </methods>
+      </class> <!-- TestAPIs.ActionsAPITest -->
+      <class name="TestAPIs.PagesAPITest">
+        <methods>
+          <include name="TC01_CreatePage" invocation-numbers="2"/>
+          <include name="setupExtentReport"/>
+          <include name="tearDownReport"/>
+        </methods>
+      </class> <!-- TestAPIs.PagesAPITest -->
+    </classes>
+  </test> <!-- TestAPIs Sequential Execution(failed) -->
+</suite> <!-- Failed suite [API Test Suite] -->

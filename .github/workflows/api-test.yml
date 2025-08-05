@@ -25,7 +25,7 @@ jobs:
         working-directory: ./Test
 
       - name: Zip TestNG Report
-        run: zip -r test-report.zip test-output
+        run: zip -r test-report.zip Test/test-output
         working-directory: ./Test
 
       - name: Send Test Report via Email
