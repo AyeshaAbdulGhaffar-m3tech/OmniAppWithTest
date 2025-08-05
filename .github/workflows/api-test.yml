@@ -21,16 +21,19 @@ jobs:
           distribution: 'temurin'
 
       - name: Run API Tests using TestNG
-        run: mvn clean test -DsuiteXmlFile=Test/testng.xml
+        working-directory: ./Test
+        run: mvn clean test -DsuiteXmlFile=testng.xml
 
       - name: List test output files (for debugging)
-        run: ls -R Test
+        working-directory: ./Test
+        run: ls -R
 
       - name: Zip test-output directory
         if: success()
+        working-directory: ./Test
         run: |
-          if [ -d "Test/test-output" ]; then
-            zip -r Test/test-report.zip Test/test-output
+          if [ -d "test-output" ]; then
+            zip -r test-report.zip test-output
           else
             echo "❌ test-output directory not found"
             exit 1
