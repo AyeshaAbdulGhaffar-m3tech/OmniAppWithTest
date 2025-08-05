@@ -20,22 +20,19 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build and Run TestNG Tests
-        run: mvn clean test -DsuiteXmlFile=testng.xml
-        working-directory: ./Test
+      - name: Run API Tests using TestNG
+        run: mvn clean test -DsuiteXmlFile=Test/testng.xml
 
-      - name: List files for debugging
-        run: ls -R
-        working-directory: ./Test
+      - name: List test output files (for debugging)
+        run: ls -R Test
 
-      - name: Zip test output
+      - name: Zip test-output directory
         if: success()
-        working-directory: ./Test
         run: |
-          if [ -d "test-output" ]; then
-            zip -r test-report.zip test-output
+          if [ -d "Test/test-output" ]; then
+            zip -r Test/test-report.zip Test/test-output
           else
-            echo "test-output directory not found"
+            echo "❌ test-output directory not found"
             exit 1
           fi
 
@@ -45,10 +42,11 @@ jobs:
           name: test-report
           path: Test/test-report.zip
 
-# Uncomment below steps if you want to send report via email in future
+# === Optional Email (commented out) ===
+# Uncomment below if email sending is required in future
 
 #      - name: Rename zip to .txt (to avoid Gmail block)
-#        run: mv ./Test/test-report.zip ./Test/test-report.txt
+#        run: mv Test/test-report.zip Test/test-report.txt
 
 #      - name: Send Test Report via Email
 #        uses: dawidd6/action-send-mail@v3
@@ -65,4 +63,4 @@ jobs:
 #            <p>Hi,</p>
 #            <p>Here is the latest TestNG API Automation report of OMNI Product.</p>
 #            <p>Regards,<br>M3Tech SQA Team</p>
-#          attachments: ./Test/test-report.txt
+#          attachments: Test/test-report.txt
