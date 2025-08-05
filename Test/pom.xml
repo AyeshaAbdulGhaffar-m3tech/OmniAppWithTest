@@ -13,6 +13,9 @@
                 <version>3.2.5</version> <!-- ✅ Add this line -->
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
+                     <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                     </suiteXmlFiles>
                 </configuration>
             </plugin>
             <plugin>
