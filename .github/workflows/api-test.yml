@@ -41,7 +41,10 @@ jobs:
 
       - name: Rename zip to .txt (to avoid Gmail block)
         run: mv ./Test/test-report.zip ./Test/test-report.txt
-
+    
+      - name: Check test-report.txt exists
+        run: test -f ./Test/test-report.txt && echo "Found" || (echo "Missing" && exit 1)
+    
       - name: Send Test Report via Email
         uses: dawidd6/action-send-mail@v3
         with:
