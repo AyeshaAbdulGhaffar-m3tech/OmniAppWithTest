@@ -12,10 +12,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version> <!-- ✅ Add this line -->
                 <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
                      <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                      </suiteXmlFiles>
+                    <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
             </plugin>
             <plugin>
