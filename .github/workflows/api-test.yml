@@ -2,9 +2,9 @@ name: API Test Automation
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -30,8 +30,8 @@ jobs:
 
       - name: Zip test output
         if: success()
+        working-directory: ./Test
         run: |
-          cd ./Test
           if [ -d "test-output" ]; then
             zip -r test-report.zip test-output
           else
@@ -39,25 +39,30 @@ jobs:
             exit 1
           fi
 
-      - name: Rename zip to .txt (to avoid Gmail block)
-        run: mv ./Test/test-report.zip ./Test/test-report.txt
-    
-      - name: Check test-report.txt exists
-        run: test -f ./Test/test-report.txt && echo "Found" || (echo "Missing" && exit 1)
-    
-      - name: Send Test Report via Email
-        uses: dawidd6/action-send-mail@v3
+      - name: Upload test report as artifact
+        uses: actions/upload-artifact@v4
         with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "OMNI - TestNG API Automation Report"
-          to: ayesha.ghaffar@m3tech.com.pk
-          from: ${{ secrets.EMAIL_USERNAME }}
-          body: |
-            <p>Hi,</p>
-            <p>Here is the latest TestNG API Automation report of OMNI Product.</p>
-            <p>Regards,<br>M3Tech SQA Team</p>
-          attachments: ./Test/test-report.txt
+          name: test-report
+          path: Test/test-report.zip
+
+# Uncomment below steps if you want to send report via email in future
+
+#      - name: Rename zip to .txt (to avoid Gmail block)
+#        run: mv ./Test/test-report.zip ./Test/test-report.txt
+
+#      - name: Send Test Report via Email
+#        uses: dawidd6/action-send-mail@v3
+#        with:
+#          server_address: smtp.gmail.com
+#          server_port: 465
+#          secure: true
+#          username: ${{ secrets.EMAIL_USERNAME }}
+#          password: ${{ secrets.EMAIL_PASSWORD }}
+#          subject: "OMNI - TestNG API Automation Report"
+#          to: ayesha.ghaffar@m3tech.com.pk
+#          from: ${{ secrets.EMAIL_USERNAME }}
+#          body: |
+#            <p>Hi,</p>
+#            <p>Here is the latest TestNG API Automation report of OMNI Product.</p>
+#            <p>Regards,<br>M3Tech SQA Team</p>
+#          attachments: ./Test/test-report.txt
