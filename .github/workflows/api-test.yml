@@ -39,6 +39,9 @@ jobs:
             exit 1
           fi
 
+          - name: Rename zip to .txt (to avoid Gmail block)
+          run: cp test-report.zip test-report.txt
+
       - name: Send Test Report via Email
         uses: dawidd6/action-send-mail@v3
         with:
@@ -54,4 +57,4 @@ jobs:
             <p>Hi,</p>
             <p>Here is the latest TestNG API Automation report of OMNI Product.</p>
             <p>Regards,<br>M3Tech SQA Team</p>
-          attachments: ./Test/test-report.zip
+          attachments: ./Test/test-report.txt
