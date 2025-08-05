@@ -10,6 +10,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version> <!-- ✅ Add this line -->
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
